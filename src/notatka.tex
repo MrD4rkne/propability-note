@@ -40,9 +40,9 @@
         \item Wiersze macierzy sumują się do 1.
         \item Rozkład \(X_t\) reprezentowany przez wektor \(\pi(t)\): \(\pi(t)_s = P(X_t = s)\). Wtedy \(\pi(t + 1) = \pi(t)M\) i ogólniej \(\pi(t + s) = \pi(t)M^s\).
         \item \(M_{a,b}^{s}\) - prawdopodobieństwo przejścia z \(a\) do \(b\) w \(s\) krokach.
-        \item \(f_{a,b}(s)\) - prawdopodobieństwo pierwszego przejścia z \(a\) do \(b\) w \(s\) krokach.
-        \item \(f_{a,b}\) - prawdopodobieństwo pierwszego przejścia z \(a\) do \(b\).
-        \item \(p_{a,b}(s)\) - prawdopodobieństwo przejścia z \(a\) do \(b\).
+        \item \(f_{a,b}(s)\) - prawdopodobieństwo \textbf{pierwszego} przejścia z \(a\) do \(b\) w \(s\) krokach.
+        \item \(f_{a,b} = \sum_{s=1}^{\infty} f_{a,b}(s)\). - prawdopodobieństwo przejścia z \(a\) do \(b\).
+        \item \(p_{a,b}(s)\) - prawdopodobieństwo przejścia z \(a\) do \(b\) w \(s\) krokach.
         \item \textbf{Stan powracający} - \(f_{a,a} = 1\). \textbf{Stan chwilowy} - nie powracający.
         \item \(a\) jest powracający \(\iff \sum_{n=1}^{\infty} p_{a,a}^{(n)} = +\infty\).
         \item Stan \(b\) jest osiągalny z \(a\) \(\iff p_{a,b} > 0\). \(b \in A(a)\).
