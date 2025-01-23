@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
     - name: Compile LaTeX document
       uses: xu-cheng/latex-action@v3
@@ -30,14 +32,26 @@ jobs:
       id: get_latest_tag
       run: echo ::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)
 
-    - name: Create Release
+    - name: Get previous tag
+      id: previoustag
+      uses: 'WyriHaximus/github-action-get-previous-tag@v1'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Get next minor version
+      id: semver
+      uses: 'WyriHaximus/github-action-next-semvers@v1'
+      with:
+        version: ${{ steps.previoustag.outputs.tag }}
+
+    - name: Create release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref_name }}
-        release_name: Release ${{ steps.get_latest_tag.outputs.tag }}.${{ github.run_number }}
+        tag_name: ${{ steps.semver.outputs.patch }}
+        release_name: Release ${{ steps.semver.outputs.patch }}
         draft: false
         prerelease: false
 
