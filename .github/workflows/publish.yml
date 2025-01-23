@@ -24,7 +24,7 @@ jobs:
       run: sudo apt-get install -y ghostscript
 
     - name: Combine PDFs
-      run: gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=combined.pdf ./src/notatka.pdf media/sciaga.pdf
+      run: gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=combined.pdf notatka.pdf media/sciaga.pdf
 
     - name: Get latest tag
       id: get_latest_tag
