@@ -14,13 +14,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install TeX Live
-      run: sudo apt-get install -y texlive-full
+    - uses: actions/checkout@v2
 
     - name: Compile LaTeX document
-      run: |
-        cd path/to/your/latex/files
-        pdflatex your_document.tex
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: |
+          notatka.tex
 
     - name: Create Release
       id: create_release
