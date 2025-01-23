@@ -1,7 +1,7 @@
 \documentclass{article}
-\setlength{\headheight}{10pt}
+\setlength{\headheight}{8pt}
 
-\usepackage[a4paper, margin=0.5in]{geometry}
+\usepackage[a4paper, margin=0.4in]{geometry}
 \usepackage{lmodern}
 \usepackage[polish]{babel}
 \usepackage[T1]{fontenc}
@@ -10,7 +10,6 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{physics}
 \usepackage{multicol}
-
 
 % Definicje środowisk do twierdzeń, lematów, dowodów itp.
 \newtheorem{theorem}{Twierdzenie}[section]
@@ -28,6 +27,10 @@
 \author{Marcin Szopa}
 \date{03.12.2024}
 
+% Remove padding at the top of subsections
+\usepackage{titlesec}
+\titlespacing*{\subsection}{0pt}{*0}{*0}
+
 \begin{document}
 
 \begin{multicols}{2}
@@ -42,24 +45,22 @@
         \item \(p_{a,b}(s)\) - prawdopodobieństwo przejścia z \(a\) do \(b\).
         \item \textbf{Stan powracający} - \(f_{a,a} = 1\). \textbf{Stan chwilowy} - nie powracający.
         \item \(a\) jest powracający \(\iff \sum_{n=1}^{\infty} p_{a,a}^{(n)} = +\infty\).
-        \item Stan \(b\) jest osiągalny z \(a\) \(\iff p_{a,b} > 0\). Oznaczamy \(b \in A(a)\).
+        \item Stan \(b\) jest osiągalny z \(a\) \(\iff p_{a,b} > 0\). \(b \in A(a)\).
         \item Stany \(a\) i \(b\) się komunikują \(\iff a \in A(b) \land b \in A(a)\).
         \item W skończonym łańcuchu Markowa dla każdego stanu \(a\) istnieje stan powracający \(b\) osiągalny z \(a\).
         \item Klasa to spójna silna składowa. Każda klasa składa się z samych stanów powracających lub chwilowych.
-        \item Łańcuch jest \textbf{nieredukowalny}, jeśli składa się z jednej klasy powracającej.
-        \item Stan \(a\) jest okresowy, jeśli istnieje \(d > 1\) (okres \(a\)), że jeśli \(p_{a,a}(k) > 0\) dla pewnego \(k\), to \(d | k\). Stan nieokresowy nazywamy nieokresowym. Łańcuch bez stanów okresowych nazywamy nieokresowym.
+        \item Łańcuch \textbf{nieredukowalny} składa się z jednej klasy powracającej.
+        \item Stan \(a\) jest okresowy, jeśli istnieje okres \(d > 1\), że jeśli \(p_{a,a}(k) > 0\)
+         dla pewnego \(k\), to \(d | k\). Łańcuch bez stanów okresowych nazywamy nieokresowym.
         
         \item \textbf{Twierdzenie Ergodyczne}: Jeśli łańcuch jest nieokresowy i nieredukowalny, to istnieje wektor \(\pi\), że:
-        \begin{enumerate}
+        \begin{enumerate}[itemsep=0pt, left=0pt, topsep=0pt]
             \item suma współrzędnych = 1,
             \item \(\pi = \pi P\),
             \item \(\lim_{n \to \infty} p_{a,b}(n) = \pi_b\).
         \end{enumerate}  
         Wektor spełniający 1 i 2 to \textbf{rozkład stacjonarny}, a 1,2,3 \textbf{graniczny} łańcucha.
     \end{itemize}
-        
-
-    \section*{Rozkłady ciągłe}
 
     \subsection*{Rozkład jednostajny \(Unif([a, b]) \)}
     \begin{itemize}[itemsep=0pt, left=0pt]
@@ -88,10 +89,10 @@
          f_{X_1 + X_2 + \ldots + X_n}(z) =  \frac{\theta^n}{(n-1)!}z^{n-1}e^{-\theta z}\).
     \end{itemize}
 
-    \subsection*{Własności rozkładów ciągłych}
+    \subsection*{Własności rozkładów}
 
     \begin{itemize}[itemsep=0pt, left=0pt]
-        \item \(EX = \int_{-\infty}^{\infty}{tf_X(t) \dd{t}}\), o ile funckaj \(tf_X(t)\) jest całkowalna z modułem na \(\mathbb{R}\).
+        \item \(EX = \int_{-\infty}^{\infty}{tf_X(t) \dd{t}}\), o ile funckja \(tf_X(t)\) jest całkowalna z modułem na \(\mathbb{R}\).
         \item \(E[g(X)] = \int_{-\infty}^{\infty}{g(t)f_X(t) \dd{t}}\), o ile funkcja \(g(t)f_X(t)\) jest całkowalna z modułem na \(\mathbb{R}\).
         \item \textbf{Twierdzenie DeMoivre'a-Laplace'a}: Niech \(S_n\) będzie liczbą sukcesów w n niezależnych próbach z
         prawdopodobieństwem sukcesu \(p\). Wówczas, dla każdego \(a < b\): \(P(a \leq \frac{S_n - np}{\sqrt{np(1-p)}} \leq b) \to \Phi(b) - \Phi(a)\)
@@ -100,30 +101,27 @@
         \item \textbf{Prawdopodobieństwo całkowite}: \(P(X \in A) = \int_{-\infty}^{\infty}{P(X \in A | Y = y) f_Y(y) \dd{t}}\)
     \end{itemize}
 
-
-    \section*{Niezależność i własności rozkładów}
-
     \subsection*{Niezależność zdarzeń}
     \begin{itemize}[itemsep=0pt, left=0pt]
-        \item \textbf{Niezależność skończonej rodziny}: Rodzina zdarzeń niezależnych, każde o \( P(A) < 1 \), nie pokrywa całej przestrzeni zdarzeń.
+        \item Rodzina zdarzeń niezależnych, każde o \( P(A) < 1 \), nie pokrywa całej przestrzeni zdarzeń.
         \item Jeśli \( X, Y \) są niezależne, \( f, g \) dowolne funkcje, to \( f(X) \) i \( g(Y) \) są niezależne.
     \end{itemize}
     
     \subsection*{Rozkład dwumianowy (\( X \sim \text{Binom}(n, p) \))}
     \begin{itemize}[itemsep=0pt, left=0pt]
-        \item Kształt: \( P(X=k) \) rośnie dla \( k \leq \lfloor (n+1)p \rfloor \), potem maleje.
+        \item \( P(X=k) \) rośnie dla \( k \leq \lfloor (n+1)p \rfloor \), potem maleje.
         \item Granica: Jeśli \( n \to \infty, p \to 0, np = \lambda \), to \( \text{Binom}(n, p) \to \text{Pois}(\lambda) \).
         \item Suma: \( \text{Binom}(n_1, p) + \text{Binom}(n_2, p) \sim \text{Binom}(n_1+n_2, p) \).
     \end{itemize}
     
     \subsection*{Rozkład Poissona (\( X \sim \text{Pois}(\lambda) \))}
     \begin{itemize}[itemsep=0pt, left=0pt]
-        \item Kształt: \( P(X=k) \) rośnie dla \( k \leq \lfloor \lambda \rfloor \), potem maleje.
+        \item \( P(X=k) \) rośnie dla \( k \leq \lfloor \lambda \rfloor \), potem maleje.
         \item Suma: \( \text{Pois}(\lambda_1) + \text{Pois}(\lambda_2) \sim \text{Pois}(\lambda_1+\lambda_2) \).
-        \item Warunkowe: Dla \( X, Y \sim \text{Pois}(\lambda_1, \lambda_2) \):
-        \[
+        \item Warunkowe: Dla \( X \sim \text{Pois}(\lambda_1), Y \sim \text{Pois}(\lambda_2) \): \\
+        \(
         P(X=k \mid X+Y=n) = \binom{n}{k} \left(\frac{\lambda_1}{\lambda_1+\lambda_2}\right)^k \left(\frac{\lambda_2}{\lambda_1+\lambda_2}\right)^{n-k}.
-        \]
+        \)
     \end{itemize}
     
     \subsection*{Rozkład geometryczny (\( X \sim \text{Geom}(p) \))}
@@ -135,13 +133,6 @@
     
     \section*{Inne własności}
     \begin{itemize}
-    
-    \item \textbf{Granica Poissona}: Jeśli \( n \to \infty \), \( p \to 0 \), i \( np = \lambda \), to: \(\text{Binom}(n, p) \to \text{Pois}(\lambda)\)
-    
-    \item \textbf{Rozkład warunkowy Poissona}: Dla \( X, Y \) niezależnych zmiennych o rozkładzie Poissona, rozkład \( X \mid X + Y = n \) jest dwumianowy:
-    \(
-    P(X = k \mid X + Y = n) = \binom{n}{k} \left( \frac{\lambda_1}{\lambda_1 + \lambda_2} \right)^k \left( \frac{\lambda_2}{\lambda_1 + \lambda_2} \right)^{n-k}
-    \)
     
     \item \textbf{Wartość oczekiwana z funkcji generującej momenty}: \(\mathbb{E}[X] = M_X'(0)\), gdzie \( M_X(t) = \mathbb{E}[e^{tX}] \).
     
