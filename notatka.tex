@@ -1,0 +1,115 @@
+\documentclass{article}
+\setlength{\headheight}{10pt}
+
+\usepackage[a4paper, margin=0.5in]{geometry}
+\usepackage{lmodern}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage[shortlabels]{enumitem}
+\usepackage{physics}
+\usepackage{multicol}
+
+
+% Definicje środowisk do twierdzeń, lematów, dowodów itp.
+\newtheorem{theorem}{Twierdzenie}[section]
+\newtheorem{lemma}[theorem]{Lemat}
+\newtheorem{corollary}[theorem]{Wniosek}
+\newtheorem{proposition}[theorem]{Stwierdzenie}
+\theoremstyle{definition}
+\newtheorem{definition}{Definicja}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Uwaga}
+\newtheorem*{example}{Przykład}
+\newtheorem*{property}{Własność}
+
+\title{Probability Test Notes}
+\author{Marcin Szopa}
+\date{03.12.2024}
+
+\begin{document}
+
+\begin{multicols}{2}
+    \section*{Rozkłady ciągłe}
+    \subsection*{Rozkład jednostajny na przedziale \( [a, b] \)}
+    \begin{itemize}[itemsep=0pt, left=0pt]
+        \item Gęstość: \( f(z) = \frac{1}{b-a} \) dla \( z \in [a, b] \), 0 wpp.
+        \item Dystrybuanta: \( F(z) = \frac{z-a}{b-a} \) dla \( z \in [a, b] \), 0 wpp.
+        \item \(\mathbb{E}[X] = \frac{a+b}{2}, \quad \text{Var}(X) = \frac{(b-a)^2}{12}\).
+    \end{itemize}
+
+    \section*{Niezależność i własności rozkładów}
+
+    \subsection*{Niezależność zdarzeń}
+    \begin{itemize}[itemsep=0pt, left=0pt]
+        \item \textbf{Niezależność skończonej rodziny}: Rodzina zdarzeń niezależnych, każde o \( P(A) < 1 \), nie pokrywa całej przestrzeni zdarzeń.
+        \item Jeśli \( X, Y \) są niezależne, \( f, g \) dowolne funkcje, to \( f(X) \) i \( g(Y) \) są niezależne.
+    \end{itemize}
+    
+    \subsection*{Rozkład dwumianowy (\( X \sim \text{Binom}(n, p) \))}
+    \begin{itemize}[itemsep=0pt, left=0pt]
+        \item \(\mathbb{E}[X] = n p, \quad \text{Var}(X) = n p (1-p)\).
+        \item Kształt: \( P(X=k) \) rośnie dla \( k \leq \lfloor (n+1)p \rfloor \), potem maleje.
+        \item Granica: Jeśli \( n \to \infty, p \to 0, np = \lambda \), to \( \text{Binom}(n, p) \to \text{Pois}(\lambda) \).
+        \item Suma: \( \text{Binom}(n_1, p) + \text{Binom}(n_2, p) \sim \text{Binom}(n_1+n_2, p) \).
+    \end{itemize}
+    
+    \subsection*{Rozkład Poissona (\( X \sim \text{Pois}(\lambda) \))}
+    \begin{itemize}[itemsep=0pt, left=0pt]
+        \item \(\mathbb{E}[X] = \lambda, \quad \text{Var}(X) = \lambda\).
+        \item Kształt: \( P(X=k) \) rośnie dla \( k \leq \lfloor \lambda \rfloor \), potem maleje.
+        \item Suma: \( \text{Pois}(\lambda_1) + \text{Pois}(\lambda_2) \sim \text{Pois}(\lambda_1+\lambda_2) \).
+        \item Warunkowe: Dla \( X, Y \sim \text{Pois}(\lambda_1, \lambda_2) \):
+        \[
+        P(X=k \mid X+Y=n) = \binom{n}{k} \left(\frac{\lambda_1}{\lambda_1+\lambda_2}\right)^k \left(\frac{\lambda_2}{\lambda_1+\lambda_2}\right)^{n-k}.
+        \]
+    \end{itemize}
+    
+    \subsection*{Rozkład geometryczny (\( X \sim \text{Geom}(p) \))}
+    \begin{itemize}[itemsep=0pt, left=0pt]
+        \item \(\mathbb{E}[X] = \frac{1}{p}, \quad \text{Var}(X) = \frac{1-p}{p^2}\).
+        \item Brak pamięci: \( P(X=n \mid X>m) = P(X=n-m) \).
+        \item Własność definiująca: Zmienna \( X \) przyjmująca wartości 1, 2 \(\ldots\)  o brakującej pamięci ma rozkład geometryczny.
+        \item Minimum: Jeśli \( X \sim \text{Geom}(p), Y \sim \text{Geom}(q) \ \text{niezależne} \), to \( \min(X, Y) \sim \text{Geom}(1-(1-p)(1-q)) \).
+    \end{itemize}
+    
+    \section*{Inne własności}
+    \begin{itemize}
+    
+    \item \textbf{Granica Poissona}: Jeśli \( n \to \infty \), \( p \to 0 \), i \( np = \lambda \), to: \(\text{Binom}(n, p) \to \text{Pois}(\lambda)\)
+    
+    \item \textbf{Rozkład warunkowy Poissona}: Dla \( X, Y \) niezależnych zmiennych o rozkładzie Poissona, rozkład \( X \mid X + Y = n \) jest dwumianowy:
+    \(
+    P(X = k \mid X + Y = n) = \binom{n}{k} \left( \frac{\lambda_1}{\lambda_1 + \lambda_2} \right)^k \left( \frac{\lambda_2}{\lambda_1 + \lambda_2} \right)^{n-k}
+    \)
+    
+    \item \textbf{Wartość oczekiwana z funkcji generującej momenty}: \(\mathbb{E}[X] = M_X'(0)\), gdzie \( M_X(t) = \mathbb{E}[e^{tX}] \).
+    
+    \item \textbf{Wartość oczekiwana z funkcji tworzącej prawdopodobieństwa} \( g_X(t) = \mathbb{E}[t^X] \): \(\mathbb{E}[X] = \lim_{t \to 1^-} g_X'(t)\), 
+    a dla funkcji \( g_X(t) \) zbieżnych na całej prostej rzeczywistej: \(\mathbb{E}[X] = g_X'(1)\)
+    
+    \item \textbf{Wariancja z funkcji tworzącej prawdopodobieństwa}: 
+    Jeśli \( X \) ma skończoną wartość oczekiwaną i wariancję, to:
+    \(
+    \mathbb{E}[X^2] = \lim_{t \to 1^-} \big(g_X'(t) + g_X''(t)\big),
+    \)
+    a wariancja wynosi:
+    \(
+    \mathrm{Var}(X) = \lim_{t \to 1^-} \big(g_X'(t) + g_X''(t) - (g_X'(t))^2\big).
+    \)
+    
+    \item \textbf{Wartość oczekiwana i wariancja z funkcji generującej prawdopodobieństwa}: 
+    Jeśli \( g_X(t) \) oraz \( g_X'(t) \) są zbieżne na całej prostej rzeczywistej, to:
+    \(
+    \mathbb{E}[X^2] = g_X'(1) + g_X''(1),
+    \), a wariancja wynosi:
+    \(
+    \text{Var}(X) = g_X'(1) + g_X''(1) - (g_X'(1))^2.
+    \)
+    
+    \end{itemize}
+
+
+
+
+\end{multicols}
+\end{document}
