@@ -28,30 +28,25 @@ jobs:
     - name: Combine PDFs
       run: gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=combined.pdf notatka.pdf media/sciaga.pdf
 
-    - name: Get latest tag
-      id: get_latest_tag
-      run: echo ::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)
-
-    - name: Get previous tag
+    - name: Get Previous tag
       id: previoustag
       uses: 'WyriHaximus/github-action-get-previous-tag@v1'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Get next minor version
-      id: semver
-      uses: 'WyriHaximus/github-action-next-semvers@v1'
+        
+    - name: Get next version
+      id: next
+      uses: 'WyriHaximus/github-action-next-release-version@1.0.0'
       with:
         version: ${{ steps.previoustag.outputs.tag }}
-
     - name: Create release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.semver.outputs.patch }}
-        release_name: Release ${{ steps.semver.outputs.patch }}
+        tag_name: ${{ steps.next.outputs.version }}
+        release_name: Release ${{ steps.next.outputs.version }}
         draft: false
         prerelease: false
 
