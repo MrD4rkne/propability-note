@@ -18,13 +18,13 @@ jobs:
       uses: xu-cheng/latex-action@v3
       with:
         root_file: |
-          notatka.tex
+          ./src/notatka.tex
 
     - name: Install Ghostscript
       run: sudo apt-get install -y ghostscript
 
     - name: Combine PDFs
-      run: gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=combined.pdf notatka.pdf sciaga.pdf
+      run: gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=combined.pdf ./src/notatka.pdf media/sciaga.pdf
 
     - name: Create Release
       id: create_release
@@ -43,6 +43,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: notatka.pdf
-        asset_name: notatka.pdf
+        asset_path: combined.pdf
+        asset_name: combined.pdf
         asset_content_type: application/pdf
