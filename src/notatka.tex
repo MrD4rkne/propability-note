@@ -1,7 +1,7 @@
 \documentclass{article}
 \setlength{\headheight}{8pt}
 
-\usepackage[a4paper, margin=0.4in]{geometry}
+\usepackage[a4paper, margin=0.3in]{geometry}
 \usepackage{lmodern}
 \usepackage[polish]{babel}
 \usepackage[T1]{fontenc}
@@ -39,27 +39,29 @@
         \item Macierz przejścia: \( P = [p_{ij}] \), gdzie \( p_{ij} = P(X_{n+1} = j \mid X_n = i) \).
         \item Wiersze macierzy sumują się do 1.
         \item Rozkład \(X_t\) reprezentowany przez wektor \(\pi(t)\): \(\pi(t)_s = P(X_t = s)\). Wtedy \(\pi(t + 1) = \pi(t)M\) i ogólniej \(\pi(t + s) = \pi(t)M^s\).
-        \item \(M_{a,b}^{s}\) - prawdopodobieństwo przejścia z \(a\) do \(b\) w \(s\) krokach.
-        \item \(f_{a,b}(s)\) - prawdopodobieństwo \textbf{pierwszego} przejścia z \(a\) do \(b\) w \(s\) krokach.
-        \item \(f_{a,b} = \sum_{s=1}^{\infty} f_{a,b}(s)\). - prawdopodobieństwo przejścia z \(a\) do \(b\).
-        \item \(p_{a,b}(s)\) - prawdopodobieństwo przejścia z \(a\) do \(b\) w \(s\) krokach.
+        \item \(M_{a,b}^{s}\) - p-ństwo przejścia z \(a\) do \(b\) w \(s\) krokach.
+        \item \(f_{a,b}(s)\) - p-ństwo \textbf{pierwszego} przejścia z \(a\) do \(b\) w \(s\) krokach.
+        \item \(f_{a,b} = \sum_{s=1}^{\infty} f_{a,b}(s)\). - p-ństwo przejścia z \(a\) do \(b\).
+        \item \(p_{a,b}(s)\) - p-ństwo przejścia z \(a\) do \(b\) w \(s\) krokach.
         \item \textbf{Stan powracający} - \(f_{a,a} = 1\). \textbf{Stan chwilowy} - nie powracający.
-        \item \(a\) jest powracający \(\iff \sum_{n=1}^{\infty} p_{a,a}^{(n)} = +\infty\).
+        \item \(a\) jest powracający \(\iff \sum_{n=1}^{\infty} p_{a,a}(n) = +\infty\).
         \item Stan \(b\) jest osiągalny z \(a\) \(\iff p_{a,b} > 0\). \(b \in A(a)\).
         \item Stany \(a\) i \(b\) się komunikują \(\iff a \in A(b) \land b \in A(a)\).
         \item W skończonym łańcuchu Markowa dla każdego stanu \(a\) istnieje stan powracający \(b\) osiągalny z \(a\).
         \item Klasa to spójna silna składowa. Każda klasa składa się z samych stanów powracających lub chwilowych.
         \item Łańcuch \textbf{nieredukowalny} składa się z jednej klasy powracającej.
         \item Stan \(a\) jest okresowy, jeśli istnieje okres \(d > 1\), że jeśli \(p_{a,a}(k) > 0\)
-         dla pewnego \(k\), to \(d | k\). Łańcuch bez stanów okresowych nazywamy nieokresowym.
-        
+         dla pewnego \(k\), to \(d | k\).
+        \item Okresem stanu a nazywamy liczbę \(d\) (o ile istnieje) zdefiniowaną tak: \(d = NWD(\{k | p_{a,a}(k) > 0\})\).
+        \item Jeżeli dwa stany Markowa się komunikują i jeden z nich jest okresowy to drugi też (z tym samym okresem).
+        \item Nieredukowalny łańcuch z stanem o okresie \(d\) jest okresowy z okresem \(d\).
         \item \textbf{Twierdzenie Ergodyczne}: Jeśli łańcuch jest nieokresowy i nieredukowalny, to istnieje wektor \(\pi\), że:
         \begin{enumerate}[itemsep=0pt, left=0pt, topsep=0pt]
             \item suma współrzędnych = 1,
             \item \(\pi = \pi P\),
             \item \(\lim_{n \to \infty} p_{a,b}(n) = \pi_b\).
         \end{enumerate}  
-        Wektor spełniający 1 i 2 to \textbf{rozkład stacjonarny}, a 1,2,3 \textbf{graniczny} łańcucha.
+        Wektor spełniający 1 i 2 to \textbf{rozkład stacjonarny}, a 1,2,3 \textbf{graniczny} łańcucha. Dla granicznego zachodzi \(\mu_{a,a} = \frac{1}{\pi_a}\)
     \end{itemize}
 
     \subsection*{Rozkład jednostajny \(Unif([a, b]) \)}
@@ -98,7 +100,7 @@
         prawdopodobieństwem sukcesu \(p\). Wówczas, dla każdego \(a < b\): \(P(a \leq \frac{S_n - np}{\sqrt{np(1-p)}} \leq b) \to \Phi(b) - \Phi(a)\)
         \item \textbf{Niezależność zmiennych losowych}: \(X,Y \text{ niezależne} \iff F_{X,Y}(x,y) = F_X(x)F_Y(y)\)
         \item \textbf{Suma niezależnych zmiennych losowych}: \(X,Y \text{ niezależne} \implies f_{X+Y}(z) = \int_{-\infty}^{\infty}{f_X(t)f_Y(z-t) \dd{t}}\)
-        \item \textbf{Prawdopodobieństwo całkowite}: \(P(X \in A) = \int_{-\infty}^{\infty}{P(X \in A | Y = y) f_Y(y) \dd{t}}\)
+        \item \textbf{p-ństwo całkowite}: \(P(X \in A) = \int_{-\infty}^{\infty}{P(X \in A | Y = y) f_Y(y) \dd{t}}\)
     \end{itemize}
 
     \subsection*{Niezależność zdarzeń}
