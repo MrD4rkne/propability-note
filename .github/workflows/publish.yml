@@ -20,6 +20,12 @@ jobs:
         root_file: |
           notatka.tex
 
+    - name: Install Ghostscript
+      run: sudo apt-get install -y ghostscript
+
+    - name: Combine PDFs
+      run: gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=combined.pdf notatka.pdf sciaga.pdf
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
