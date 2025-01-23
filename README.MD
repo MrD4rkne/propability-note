@@ -4,7 +4,7 @@
 
 You can find the pdf version in newest release.
 
-## Development
+## Release
 
 1. After each commit, an action automatically builds `notatka.tex` and combines it with `sciaga.pdf`.
 2. Then it creates a release.
