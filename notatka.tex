@@ -33,31 +33,50 @@
 \begin{multicols}{2}
     \section*{Rozkłady ciągłe}
 
-    \subsection*{Rozkład jednostajny na przedziale \(Unif([a, b]) \)}
+    \subsection*{Rozkład jednostajny \(Unif([a, b]) \)}
     \begin{itemize}[itemsep=0pt, left=0pt]
         \item Gęstość: \( f(z) = \frac{1}{b-a} \) dla \( z \in [a, b] \), 0 wpp.
         \item Dystrybuanta: \( F(z) = \frac{z-a}{b-a} \) dla \( z \in [a, b] \), 0 wpp.
         \item \(\mathbb{E}[X] = \frac{a+b}{2}, \quad \text{Var}(X) = \frac{(b-a)^2}{12}\).
     \end{itemize}
 
-    \subsection*{Rozkład wykładniczy (\( X \sim \text{Exp}(\theta) \))}
+    \subsection*{Rozkład wykładniczy \( X \sim \text{Exp}(\theta) \)}
     \begin{itemize}[itemsep=0pt, left=0pt]
         \item Gęstość: \( f(z) = \theta e^{-\theta z} \) dla \( z \geq 0 \), 0 wpp.
         \item Dystrybuanta: \( F(z) = 1 - e^{-\theta z} \) dla \( z \geq 0 \), 0 wpp.
         \item \(\mathbb{E}[X] = \frac{1}{\theta}, \quad \text{Var}(X) = \frac{1}{\theta^2}\).
-        \item Brak pamięci: \( P(X > s+t \mid X > s) = P(X > t) \).   
+        \item Brak pamięci: \( P(X > s+t \mid X > s) = P(X > t) \). 
+          
+        \item \textbf{Suma n-zmiennych wykładniczych}: \(X_1, X_2, \ldots, X_n \\
+        \text{ niezależne o tym samym rozkładzie:} \\
+         f_{X_1 + X_2 + \ldots + X_n}(z) =  \frac{\theta^n}{(n-1)!}z^{n-1}e^{-\theta z}\).
     \end{itemize}
 
-    \subsection*{Rozkład normalny/Gaussa (\( X \sim \mathcal{N}(\mu, \sigma^2) \))}
-
+    \subsection*{Rozkład normalny/Gaussa \( X \sim \mathcal{N}(\mu, \sigma^2) \)}
     \begin{itemize}[itemsep=0pt, left=0pt]
         \item Gęstość: \( f(z) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(z-\mu)^2}{2\sigma^2}} \).
         \item Dystrybuanta: \(\Phi(z)=F(z) = \int_{-\infty}^{z} f(t) \dd{t}\).
         \item \(\mathbb{E}[X] = \mu, \quad \text{Var}(X) = \sigma^2\).
         \item Jeśli \(X \sim \mathcal{N}(\mu, \sigma^2)\), to \(cX+a \sim \mathcal{N}(c\mu+a, c^2\sigma^2)\).
         \item Suma: Jeśli \( X \sim \mathcal{N}(\mu_1, \sigma_1^2) \) i \( Y \sim \mathcal{N}(\mu_2, \sigma_2^2) \) są niezależne, to \( X+Y \sim \mathcal{N}(\mu_1+\mu_2, \sigma_1^2+\sigma_2^2) \).
-
+        \item \textbf{Suma n-zmiennych jednostajnych}: \(X_1, X_2, \ldots, X_n \\
+        \text{ niezależne o tym samym rozkładzie:} \\
+         f_{X_1 + X_2 + \ldots + X_n}(z) =  \frac{\theta^n}{(n-1)!}z^{n-1}e^{-\theta z}\).
     \end{itemize}
+
+    \subsection*{Własności rozkładów ciągłych}
+
+    \begin{itemize}[itemsep=0pt, left=0pt]
+        \item \(EX = \int_{-\infty}^{\infty}{tf_X(t) \dd{t}}\), o ile funckaj \(tf_X(t)\) jest całkowalna z modułem na \(\mathbb{R}\).
+        \item \(E[g(X)] = \int_{-\infty}^{\infty}{g(t)f_X(t) \dd{t}}\), o ile funkcja \(g(t)f_X(t)\) jest całkowalna z modułem na \(\mathbb{R}\).
+        \item \textbf{Twierdzenie DeMoivre;a-Laplace'a}: Niech \(S_n\) będzie liczbą sukcesów w n niezależnych próbach z
+        prawdopodobieństwem sukcesu \(p\). Wówczas, dla każdego \(a < b\): \(P(a \leq \frac{S_n - np}{\sqrt{np(1-p)}} \leq b) \to \Phi(b) - \Phi(a)\)
+        \item \textbf{Niezależność zmiennych losowych}: \(X,Y \text{ niezależne} \iff F_{X,Y}(x,y) = F_X(x)F_Y(y)\)
+        \item \textbf{Suma niezależnych zmiennych losowych}: \(X,Y \text{ niezależne} \implies f_{X+Y}(z) = \int_{-\infty}^{\infty}{f_X(t)f_Y(z-t) \dd{t}}\)
+        \item \textbf{Prawdopodobieństwo całkowite}: \(P(X \in A) = \int_{-\infty}^{\infty}{P(X \in A | Y = y) f_Y(y) \dd{t}}\)
+    \end{itemize}
+
+
     \section*{Niezależność i własności rozkładów}
 
     \subsection*{Niezależność zdarzeń}
