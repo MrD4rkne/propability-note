@@ -31,6 +31,34 @@
 \begin{document}
 
 \begin{multicols}{2}
+    \section*{Markow}
+    \begin{itemize}[itemsep=0pt, left=0pt]
+        \item Macierz przejścia: \( P = [p_{ij}] \), gdzie \( p_{ij} = P(X_{n+1} = j \mid X_n = i) \).
+        \item Wiersze macierzy sumują się do 1.
+        \item Rozkład \(X_t\) reprezentowany przez wektor \(\pi(t)\): \(\pi(t)_s = P(X_t = s)\). Wtedy \(\pi(t + 1) = \pi(t)M\) i ogólniej \(\pi(t + s) = \pi(t)M^s\).
+        \item \(M_{a,b}^{s}\) - prawdopodobieństwo przejścia z \(a\) do \(b\) w \(s\) krokach.
+        \item \(f_{a,b}(s)\) - prawdopodobieństwo pierwszego przejścia z \(a\) do \(b\) w \(s\) krokach.
+        \item \(f_{a,b}\) - prawdopodobieństwo pierwszego przejścia z \(a\) do \(b\).
+        \item \(p_{a,b}(s)\) - prawdopodobieństwo przejścia z \(a\) do \(b\).
+        \item \textbf{Stan powracający} - \(f_{a,a} = 1\). \textbf{Stan chwilowy} - nie powracający.
+        \item \(a\) jest powracający \(\iff \sum_{n=1}^{\infty} p_{a,a}^{(n)} = +\infty\).
+        \item Stan \(b\) jest osiągalny z \(a\) \(\iff p_{a,b} > 0\). Oznaczamy \(b \in A(a)\).
+        \item Stany \(a\) i \(b\) się komunikują \(\iff a \in A(b) \land b \in A(a)\).
+        \item W skończonym łańcuchu Markowa dla każdego stanu \(a\) istnieje stan powracający \(b\) osiągalny z \(a\).
+        \item Klasa to spójna silna składowa. Każda klasa składa się z samych stanów powracających lub chwilowych.
+        \item Łańcuch jest \textbf{nieredukowalny}, jeśli składa się z jednej klasy powracającej.
+        \item Stan \(a\) jest okresowy, jeśli istnieje \(d > 1\) (okres \(a\)), że jeśli \(p_{a,a}(k) > 0\) dla pewnego \(k\), to \(d | k\). Stan nieokresowy nazywamy nieokresowym. Łańcuch bez stanów okresowych nazywamy nieokresowym.
+        
+        \item \textbf{Twierdzenie Ergodyczne}: Jeśli łańcuch jest nieokresowy i nieredukowalny, to istnieje wektor \(\pi\), że:
+        \begin{enumerate}
+            \item suma współrzędnych = 1,
+            \item \(\pi = \pi P\),
+            \item \(\lim_{n \to \infty} p_{a,b}(n) = \pi_b\).
+        \end{enumerate}  
+        Wektor spełniający 1 i 2 to \textbf{rozkład stacjonarny}, a 1,2,3 \textbf{graniczny} łańcucha.
+    \end{itemize}
+        
+
     \section*{Rozkłady ciągłe}
 
     \subsection*{Rozkład jednostajny \(Unif([a, b]) \)}
