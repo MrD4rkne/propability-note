@@ -3,7 +3,8 @@ name: Publish PDF
 on:
   push:
     branches:
-      - main
+      - master
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   build:
