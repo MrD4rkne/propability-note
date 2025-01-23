@@ -3,6 +3,8 @@
 
 \usepackage[a4paper, margin=0.5in]{geometry}
 \usepackage{lmodern}
+\usepackage[polish]{babel}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{hyperref}
 \usepackage[shortlabels]{enumitem}
@@ -30,13 +32,32 @@
 
 \begin{multicols}{2}
     \section*{Rozkłady ciągłe}
-    \subsection*{Rozkład jednostajny na przedziale \( [a, b] \)}
+
+    \subsection*{Rozkład jednostajny na przedziale \(Unif([a, b]) \)}
     \begin{itemize}[itemsep=0pt, left=0pt]
         \item Gęstość: \( f(z) = \frac{1}{b-a} \) dla \( z \in [a, b] \), 0 wpp.
         \item Dystrybuanta: \( F(z) = \frac{z-a}{b-a} \) dla \( z \in [a, b] \), 0 wpp.
         \item \(\mathbb{E}[X] = \frac{a+b}{2}, \quad \text{Var}(X) = \frac{(b-a)^2}{12}\).
     \end{itemize}
 
+    \subsection*{Rozkład wykładniczy (\( X \sim \text{Exp}(\theta) \))}
+    \begin{itemize}[itemsep=0pt, left=0pt]
+        \item Gęstość: \( f(z) = \theta e^{-\theta z} \) dla \( z \geq 0 \), 0 wpp.
+        \item Dystrybuanta: \( F(z) = 1 - e^{-\theta z} \) dla \( z \geq 0 \), 0 wpp.
+        \item \(\mathbb{E}[X] = \frac{1}{\theta}, \quad \text{Var}(X) = \frac{1}{\theta^2}\).
+        \item Brak pamięci: \( P(X > s+t \mid X > s) = P(X > t) \).   
+    \end{itemize}
+
+    \subsection*{Rozkład normalny/Gaussa (\( X \sim \mathcal{N}(\mu, \sigma^2) \))}
+
+    \begin{itemize}[itemsep=0pt, left=0pt]
+        \item Gęstość: \( f(z) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(z-\mu)^2}{2\sigma^2}} \).
+        \item Dystrybuanta: \(\Phi(z)=F(z) = \int_{-\infty}^{z} f(t) \dd{t}\).
+        \item \(\mathbb{E}[X] = \mu, \quad \text{Var}(X) = \sigma^2\).
+        \item Jeśli \(X \sim \mathcal{N}(\mu, \sigma^2)\), to \(cX+a \sim \mathcal{N}(c\mu+a, c^2\sigma^2)\).
+        \item Suma: Jeśli \( X \sim \mathcal{N}(\mu_1, \sigma_1^2) \) i \( Y \sim \mathcal{N}(\mu_2, \sigma_2^2) \) są niezależne, to \( X+Y \sim \mathcal{N}(\mu_1+\mu_2, \sigma_1^2+\sigma_2^2) \).
+
+    \end{itemize}
     \section*{Niezależność i własności rozkładów}
 
     \subsection*{Niezależność zdarzeń}
