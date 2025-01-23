@@ -26,14 +26,18 @@ jobs:
     - name: Combine PDFs
       run: gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=combined.pdf ./src/notatka.pdf media/sciaga.pdf
 
+    - name: Get latest tag
+      id: get_latest_tag
+      run: echo ::set-output name=tag::$(git describe --tags `git rev-list --tags --max-count=1`)
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref_name }}
-        release_name: Release ${{ github.ref_name }}
+        tag_name: ${{ steps.get_latest_tag.outputs.tag }}.${{ github.run_number }}
+        release_name: Release ${{ steps.get_latest_tag.outputs.tag }}.${{ github.run_number }}
         draft: false
         prerelease: false
 
