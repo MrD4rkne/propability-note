@@ -11,6 +11,6 @@ You can find the pdf version in newest release.
 
 ## Authors
 
-[Eryk Kopczyński](https://www.mimuw.edu.pl/~erykk/xe-rp.php): [./sciaga.pdf](./sciaga.pdf)
+[Eryk Kopczyński](https://www.mimuw.edu.pl/~erykk/xe-rp.php): [sciaga.pdf](./media/sciaga.pdf)
 
 [Marcin Szopa](https://github.com/MrD4rkne): notatka.tex, repository
