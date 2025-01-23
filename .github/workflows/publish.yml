@@ -28,25 +28,20 @@ jobs:
     - name: Combine PDFs
       run: gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=combined.pdf notatka.pdf media/sciaga.pdf
 
-    - name: Get Previous tag
-      id: previoustag
-      uses: 'WyriHaximus/github-action-get-previous-tag@v1'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Get next version
-      id: next
-      uses: 'WyriHaximus/github-action-next-release-version@1.0.0'
+    - name: Bump version and push tag
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v6.0
       with:
-        version: ${{ steps.previoustag.outputs.tag }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Create release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.next.outputs.version }}
-        release_name: Release ${{ steps.next.outputs.version }}
+        tag_name: ${{ steps.tag_version.outputs.new_tag }}
+        release_name: Release ${{ steps.tag_version.outputs.new_tag }}
         draft: false
         prerelease: false
 
